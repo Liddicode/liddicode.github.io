@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<html lang="en-gb">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>Argus Filch will be the next Dark Lord | Liddicode</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://liddicode.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    </head>
+
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">Liddicode</a>
+    </div>  
+</header>
+
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://liddicode.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+    <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+    <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://liddicode.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+</footer>
+
+</nav>
+
+        <div id="content" class="content-container">
+        
+
+<h1 class="post-title">Argus Filch will be the next Dark Lord</h1>
+    
+    <div>
+        <p>
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>matplotlib widget
+<span style="color:#f92672">from</span> sklearn.cluster <span style="color:#f92672">import</span> KMeans
+<span style="color:#f92672">from</span> copy <span style="color:#f92672">import</span> deepcopy
+<span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+<span style="color:#f92672">import</span> networkx <span style="color:#66d9ef">as</span> nx
+<span style="color:#f92672">import</span> seaborn <span style="color:#66d9ef">as</span> sns
+<span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+<span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> normalize <span style="color:#66d9ef">as</span> nz
+<span style="color:#f92672">from</span> graspologic.plot <span style="color:#f92672">import</span> pairplot_with_gmm
+<span style="color:#f92672">from</span> myfuncs <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">import</span> seaborn <span style="color:#66d9ef">as</span> sns
+
+<span style="color:#f92672">import</span> matplotlib <span style="color:#66d9ef">as</span> mpl
+mpl<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;font.size&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+
+mpl<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;text.usetex&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+<span style="color:#75715e">#mpl.rcParams[&#39;text.latex.preamble&#39;] = r&#39;\usepackage{{amsmath}}&#39;</span>
+mpl<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;text.latex.preamble&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\usepackage</span><span style="color:#e6db74">{amsmath}</span><span style="color:#e6db74">&#39;</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cartesian_to_spherical</span>(cartesian_vectors):
+    <span style="color:#f92672">import</span> warnings
+
+    <span style="color:#66d9ef">with</span> warnings<span style="color:#f92672">.</span>catch_warnings(record<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>):
+        angle_vectors <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(cartesian_vectors<span style="color:#f92672">.</span>shape)
+        angle_vectors[:,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        n, m <span style="color:#f92672">=</span> cartesian_vectors<span style="color:#f92672">.</span>shape
+        mask <span style="color:#f92672">=</span> (cartesian_vectors[:,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>)
+        antimask <span style="color:#f92672">=</span> (mask <span style="color:#f92672">==</span> <span style="color:#66d9ef">False</span>)
+
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">True</span> <span style="color:#f92672">in</span> mask:
+            angle_vectors[mask, <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arccos(cartesian_vectors[mask, <span style="color:#ae81ff">1</span>]<span style="color:#f92672">/</span>(np<span style="color:#f92672">.</span>sum(cartesian_vectors[mask, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>]<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">**</span>(<span style="color:#ae81ff">0.5</span>))
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">True</span> <span style="color:#f92672">in</span> antimask:
+            angle_vectors[antimask, <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>arccos(cartesian_vectors[antimask, <span style="color:#ae81ff">1</span>]<span style="color:#f92672">/</span>(np<span style="color:#f92672">.</span>sum(cartesian_vectors[antimask, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>]<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>,axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">**</span><span style="color:#ae81ff">0.5</span>)
+
+        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>, m):
+            angle_vectors[:, j]<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>arccos(cartesian_vectors[:,j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">/</span>(np<span style="color:#f92672">.</span>sum(cartesian_vectors[:, <span style="color:#ae81ff">0</span>:j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">**</span><span style="color:#ae81ff">0.5</span>)
+        <span style="color:#66d9ef">return</span> angle_vectors
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_symmetric</span>(a, rtol<span style="color:#f92672">=</span><span style="color:#ae81ff">1e-05</span>, atol<span style="color:#f92672">=</span><span style="color:#ae81ff">1e-08</span>):
+    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>allclose(a, a<span style="color:#f92672">.</span>T, rtol<span style="color:#f92672">=</span>rtol, atol<span style="color:#f92672">=</span>atol)
+
+characters <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;harry_characters.csv&#39;</span>)
+relations <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;harry_relations.csv&#39;</span>)
+characters
+</code></pre></div><!-- raw HTML omitted -->
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">stuffs <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> relations[<span style="color:#e6db74">&#34;type&#34;</span>]:
+    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span><span style="color:#e6db74">&#39;-&#39;</span>:
+        stuffs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">elif</span> i <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;+&#39;</span>:
+        stuffs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">else</span>:
+        stuffs[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+print(stuffs, sum(stuffs))
+</code></pre></div><pre><code>[157, 356, 0] 513
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure()<span style="color:#f92672">.</span>clear()
+n <span style="color:#f92672">=</span> len(characters[<span style="color:#e6db74">&#34;id&#34;</span>])
+
+A <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((n,n))
+<span style="color:#f92672">import</span> networkx <span style="color:#66d9ef">as</span> nx
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+
+
+<span style="color:#66d9ef">for</span> count, value <span style="color:#f92672">in</span> relations<span style="color:#f92672">.</span>iterrows():
+    A[value[<span style="color:#e6db74">&#34;source&#34;</span>], value[<span style="color:#e6db74">&#34;target&#34;</span>]] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> value[<span style="color:#e6db74">&#34;type&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">1</span>
+    A[value[<span style="color:#e6db74">&#34;target&#34;</span>], value[<span style="color:#e6db74">&#34;source&#34;</span>]] <span style="color:#f92672">=</span> A[value[<span style="color:#e6db74">&#34;source&#34;</span>], value[<span style="color:#e6db74">&#34;target&#34;</span>]]
+
+names <span style="color:#f92672">=</span> characters[<span style="color:#e6db74">&#34;name&#34;</span>]<span style="color:#f92672">.</span>to_numpy()
+keep <span style="color:#f92672">=</span> (np<span style="color:#f92672">.</span>sum(A, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+A <span style="color:#f92672">=</span> A[keep, :]
+A <span style="color:#f92672">=</span> A[:, keep]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, A<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>]):
+    A[i,i]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+
+names <span style="color:#f92672">=</span> names[keep]
+
+n_dict <span style="color:#f92672">=</span> {}
+<span style="color:#66d9ef">for</span> ind, name <span style="color:#f92672">in</span> enumerate(names):
+    n_dict[ind]<span style="color:#f92672">=</span>name
+    
+
+G1 <span style="color:#f92672">=</span> nx<span style="color:#f92672">.</span>from_numpy_matrix(A)
+nx<span style="color:#f92672">.</span>draw_networkx(G1, with_labels<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, labels<span style="color:#f92672">=</span>n_dict, font_size<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, node_color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;orange&#34;</span>)
+<span style="color:#75715e">#plt.savefig(&#34;graph.pdf&#34;)</span>
+<span style="color:#75715e">#plt.savefig(&#34;graph.png&#34;)</span>
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;Harry Potter Enmity Graph&#34;</span>)
+plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#34;graph.svg&#34;</span>)
+
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> graphbook_code <span style="color:#f92672">import</span> draw_multiplot
+draw_multiplotdsd(A,title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A, a sample from an $SBM_n(z, B)$ Simulation&#34;</span>)
+
+</code></pre></div><pre><code>array([&lt;AxesSubplot: &gt;, &lt;AxesSubplot: &gt;], dtype=object)
+</code></pre>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Xhat,U,s,Vt <span style="color:#f92672">=</span> full_pairs(A, svd_matrix <span style="color:#f92672">=</span> adjacency,  title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Adjacency&#34;</span>, dim<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, directed <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>, plot<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+<span style="color:#75715e">#plt.figure().clear()</span>
+
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">from numpy.linalg import svd
+</span><span style="color:#e6db74">mat = A
+</span><span style="color:#e6db74">U,S,V = svd(mat)
+</span><span style="color:#e6db74">print(S)
+</span><span style="color:#e6db74">Phat = 
+</span><span style="color:#e6db74">pos_dict=</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">r=2
+</span><span style="color:#e6db74">for i in range(0, Phat.shape[0]):
+</span><span style="color:#e6db74">    pos_dict[i] = [r*abs(Phat[i,0]), r*abs(Phat[i,1])]
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">G1 = nx.from_numpy_matrix(A)
+</span><span style="color:#e6db74">nx.draw_networkx(G1, with_labels=True, pos=pos_dict, labels=n_dict, font_size=6, node_color=&#34;orange&#34;, font_color=&#34;blue&#34;, font_weight=20)
+</span><span style="color:#e6db74">#plt.savefig(&#34;graph.pdf&#34;)
+</span><span style="color:#e6db74">#plt.savefig(&#34;graph.png&#34;)
+</span><span style="color:#e6db74">plt.title(&#34;Harry Potter Enmity Graph&#34;)
+</span><span style="color:#e6db74">plt.savefig(&#34;graph.svg&#34;)
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+
+</code></pre></div><pre><code>'\nfrom numpy.linalg import svd\nmat = A\nU,S,V = svd(mat)\nprint(S)\nPhat = \npos_dict={}\nr=2\nfor i in range(0, Phat.shape[0]):\n    pos_dict[i] = [r*abs(Phat[i,0]), r*abs(Phat[i,1])]\n\nG1 = nx.from_numpy_matrix(A)\nnx.draw_networkx(G1, with_labels=True, pos=pos_dict, labels=n_dict, font_size=6, node_color=&quot;orange&quot;, font_color=&quot;blue&quot;, font_weight=20)\n#plt.savefig(&quot;graph.pdf&quot;)\n#plt.savefig(&quot;graph.png&quot;)\nplt.title(&quot;Harry Potter Enmity Graph&quot;)\nplt.savefig(&quot;graph.svg&quot;)\n'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> pandas <span style="color:#f92672">import</span> DataFrame
+<span style="color:#f92672">import</span> seaborn <span style="color:#66d9ef">as</span> sns
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plot_scree</span>(svs, title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, d<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>, ax<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+    <span style="color:#66d9ef">if</span> ax <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+        fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>))
+    sv_dat <span style="color:#f92672">=</span> DataFrame({<span style="color:#e6db74">&#34;Singular Value&#34;</span>: svs, <span style="color:#e6db74">&#34;Dimension&#34;</span>: range(<span style="color:#ae81ff">1</span>, len(svs) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)})
+    sns<span style="color:#f92672">.</span>scatterplot(data<span style="color:#f92672">=</span>sv_dat, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Dimension&#34;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Singular Value&#34;</span>, ax<span style="color:#f92672">=</span>ax)
+    ax<span style="color:#f92672">.</span>set_xlim([<span style="color:#ae81ff">0</span>, len(svs)])
+    ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#34;Dimension&#34;</span>)
+    ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#34;Singular Value&#34;</span>)
+    ax<span style="color:#f92672">.</span>set_title(title)
+    <span style="color:#66d9ef">if</span> d <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
+        ax<span style="color:#f92672">.</span>axvline(x<span style="color:#f92672">=</span>d, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>)
+        ax<span style="color:#f92672">.</span>text(x<span style="color:#f92672">=</span>d<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, y<span style="color:#f92672">=</span>svs[d], s<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Dimension </span><span style="color:#e6db74">{:d}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(d), color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>, size<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+
+plot_scree(s[:<span style="color:#ae81ff">100</span>], title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Scree plot of $A$&#34;</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+dim <span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X3 <span style="color:#f92672">=</span> nz(Xhat[:, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>], norm<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;l2&#39;</span>)
+
+X5 <span style="color:#f92672">=</span> cartesian_to_spherical(X3)
+
+<span style="color:#f92672">from</span> sklearn.cluster <span style="color:#f92672">import</span> KMeans
+<span style="color:#f92672">from</span> copy <span style="color:#f92672">import</span> deepcopy
+
+kmeans <span style="color:#f92672">=</span> KMeans(n_clusters<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>fit(X5[:,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>reshape(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+labelz <span style="color:#f92672">=</span> kmeans<span style="color:#f92672">.</span>labels_
+labelz
+
+cluster0 <span style="color:#f92672">=</span> (Xhat[:,:][:, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>])[labelz <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>,:]
+cluster1 <span style="color:#f92672">=</span> (Xhat[:,:][:, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>])[labelz <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>,:]
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+<span style="color:#f92672">from</span> sklearn.linear_model <span style="color:#f92672">import</span> LinearRegression
+
+LR0<span style="color:#f92672">=</span> LinearRegression()
+lr0 <span style="color:#f92672">=</span> LR0<span style="color:#f92672">.</span>fit(cluster0[:,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>reshape((<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)), cluster0[:,<span style="color:#ae81ff">1</span>])
+
+LR1<span style="color:#f92672">=</span> LinearRegression()
+lr1 <span style="color:#f92672">=</span> LR1<span style="color:#f92672">.</span>fit(cluster1[:,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>reshape((<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)), cluster1[:,<span style="color:#ae81ff">1</span>])
+
+
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>matplotlib widget
+plt<span style="color:#f92672">.</span>figure()<span style="color:#f92672">.</span>clear()
+<span style="color:#75715e">#ax.cla()</span>
+ax<span style="color:#f92672">=</span>plt<span style="color:#f92672">.</span>axes()
+newlabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;Friends&#34;</span>,<span style="color:#e6db74">&#34;Enemies&#34;</span>)
+newlabelz <span style="color:#f92672">=</span> [newlabel[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> labelz]
+
+
+
+<span style="color:#75715e">#</span>
+pl <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>scatterplot(x<span style="color:#f92672">=</span>(Xhat[:,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">**</span><span style="color:#ae81ff">0.5</span>,y<span style="color:#f92672">=</span>Xhat[:,<span style="color:#ae81ff">1</span>], hue <span style="color:#f92672">=</span> newlabelz, axes<span style="color:#f92672">=</span>ax)
+<span style="color:#75715e">#pl.set(aspect=1)</span>
+<span style="color:#75715e">#pl.legend(bbox_to_anchor=(0., 1), loc=1, borderaxespad=0.3)</span>
+<span style="color:#75715e">#pl.legend(loc=2, prop={&#39;size&#39;: 10})</span>
+
+<span style="color:#75715e">#pl.axis(&#39;equal&#39;)</span>
+pl<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$X_0$&#39;</span>)
+pl<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$X_1$&#39;</span>)
+pl<span style="color:#f92672">.</span>tick_params(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;both&#39;</span>, which<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;major&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>)
+pl<span style="color:#f92672">.</span>tick_params(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;both&#39;</span>, which<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;minor&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+
+
+<span style="color:#75715e">#print(newlabelz)</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(names)):
+    <span style="color:#75715e">#if newlabelz[i] ==&#34;Enemies&#34; and abs(Xhat[i,0])&gt;0.3:</span>
+    pl<span style="color:#f92672">.</span>text(x<span style="color:#f92672">=</span>abs(Xhat[i,<span style="color:#ae81ff">0</span>]), y<span style="color:#f92672">=</span>(Xhat[i,<span style="color:#ae81ff">1</span>]), s<span style="color:#f92672">=</span>names[i], fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+
+
+pl<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;Harry Potter Enmity Spectral Embedding&#34;</span>) 
+
+x<span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">100</span>)
+y1<span style="color:#f92672">=</span>x<span style="color:#f92672">*</span>LR1<span style="color:#f92672">.</span>coef_<span style="color:#f92672">+</span>LR1<span style="color:#f92672">.</span>intercept_
+y0 <span style="color:#f92672">=</span> x<span style="color:#f92672">*</span>LR0<span style="color:#f92672">.</span>coef_<span style="color:#f92672">+</span>LR0<span style="color:#f92672">.</span>intercept_
+pl<span style="color:#f92672">.</span>plot(x, y1)
+pl<span style="color:#f92672">.</span>plot(x, y0)
+
+</code></pre></div><pre><code>[&lt;matplotlib.lines.Line2D at 0x7fd39a285210&gt;]
+</code></pre>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">kmeans <span style="color:#f92672">=</span> KMeans(n_clusters <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>fit(Xhat[:,<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>])
+x,y,z <span style="color:#f92672">=</span> abs(Xhat[:, <span style="color:#ae81ff">0</span>]), Xhat[:, <span style="color:#ae81ff">1</span>],Xhat[:, <span style="color:#ae81ff">2</span>]
+labelz2 <span style="color:#f92672">=</span> kmeans<span style="color:#f92672">.</span>labels_
+cdict <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#39;red&#39;</span>, <span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#39;blue&#39;</span>, <span style="color:#ae81ff">0</span>: <span style="color:#e6db74">&#39;green&#39;</span>}
+<span style="color:#75715e">#plt.figure().clear()</span>
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>))
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(names)):
+    plt<span style="color:#f92672">.</span>text(x<span style="color:#f92672">=</span>abs(Xhat[i,<span style="color:#ae81ff">0</span>]), y<span style="color:#f92672">=</span>Xhat[i,<span style="color:#ae81ff">1</span>], s<span style="color:#f92672">=</span>names[i], fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+colours <span style="color:#f92672">=</span> deepcopy(names)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(colours)):
+    colours[i]<span style="color:#f92672">=</span>cdict[int(labelz2[i])]
+plt<span style="color:#f92672">.</span>scatter(x,y, label <span style="color:#f92672">=</span> labelz2, c <span style="color:#f92672">=</span>colours)
+
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;$X_0$&#34;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;$X_1$&#34;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;K-means Clustering with Cartesian Coordinates&#34;</span>)
+</code></pre></div><pre><code>Text(0.5, 1.0, 'K-means Clustering with Cartesian Coordinates')
+</code></pre>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+x,y,z <span style="color:#f92672">=</span> abs(Xhat[:, <span style="color:#ae81ff">0</span>]), Xhat[:, <span style="color:#ae81ff">1</span>],Xhat[:, <span style="color:#ae81ff">2</span>]
+
+cdict <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#39;red&#39;</span>, <span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#39;blue&#39;</span>, <span style="color:#ae81ff">0</span>: <span style="color:#e6db74">&#39;green&#39;</span>}
+<span style="color:#75715e">#plt.figure().clear()</span>
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>))
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(names)):
+    plt<span style="color:#f92672">.</span>text(x<span style="color:#f92672">=</span>abs(Xhat[i,<span style="color:#ae81ff">0</span>]), y<span style="color:#f92672">=</span>Xhat[i,<span style="color:#ae81ff">1</span>], s<span style="color:#f92672">=</span>names[i], fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+colours <span style="color:#f92672">=</span> deepcopy(names)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(colours)):
+    colours[i]<span style="color:#f92672">=</span>cdict[int(labelz[i])]
+plt<span style="color:#f92672">.</span>scatter(x,y, label <span style="color:#f92672">=</span> labelz, c <span style="color:#f92672">=</span>colours)
+
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;$X_0$&#34;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;$X_1$&#34;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;K-means Clustering With Spherical Coordinates&#34;</span>)
+</code></pre></div><pre><code>Text(0.5, 1.0, 'K-means Clustering With Spherical Coordinates')
+</code></pre>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+x,y <span style="color:#f92672">=</span> X5[:, <span style="color:#ae81ff">1</span>], X5[:, <span style="color:#ae81ff">2</span>]
+
+cdict <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#39;red&#39;</span>, <span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#39;blue&#39;</span>, <span style="color:#ae81ff">0</span>: <span style="color:#e6db74">&#39;green&#39;</span>}
+<span style="color:#75715e">#plt.figure().clear()</span>
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>))
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(names)):
+    plt<span style="color:#f92672">.</span>text(x<span style="color:#f92672">=</span>x[i], y<span style="color:#f92672">=</span>y[i], s<span style="color:#f92672">=</span>names[i], fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+colours <span style="color:#f92672">=</span> deepcopy(names)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(colours)):
+    colours[i]<span style="color:#f92672">=</span>cdict[int(labelz[i])]
+plt<span style="color:#f92672">.</span>scatter(x,y, label <span style="color:#f92672">=</span> labelz, c <span style="color:#f92672">=</span>colours)
+
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\theta_0$&#39;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\theta_1$&#39;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;K-means Clustering with Spherical Coordinates&#34;</span>)
+</code></pre></div><pre><code>Text(0.5, 1.0, 'K-means Clustering with Spherical Coordinates')
+</code></pre>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">raw_errors0 <span style="color:#f92672">=</span> cluster0[:,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>LR0<span style="color:#f92672">.</span>coef_<span style="color:#f92672">+</span>LR0<span style="color:#f92672">.</span>intercept_<span style="color:#f92672">-</span>cluster0[:,<span style="color:#ae81ff">1</span>]
+raw_errors1 <span style="color:#f92672">=</span> cluster1[:,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>LR1<span style="color:#f92672">.</span>coef_<span style="color:#f92672">+</span>LR1<span style="color:#f92672">.</span>intercept_<span style="color:#f92672">-</span>cluster1[:,<span style="color:#ae81ff">1</span>]
+
+errors0 <span style="color:#f92672">=</span> raw_errors0[abs(raw_errors0)<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0.1</span>]
+
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>))
+sns<span style="color:#f92672">.</span>scatterplot(x<span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(range(<span style="color:#ae81ff">0</span>, len(errors0))), y<span style="color:#f92672">=</span>errors0)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;Error&#34;</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;n&#34;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;Errors&#34;</span>)
+plt<span style="color:#f92672">.</span>plot()
+</code></pre></div><pre><code>[]
+</code></pre>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">symmetric_RSC</span>(A, K, <span style="color:#f92672">*</span>, tau <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;default&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>):
+    d <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>diagonal(degree_matrix(A))
+    <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">in</span> np<span style="color:#f92672">.</span>diagonal(degree_matrix(A)):
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Network contains nodes of degree 0&#34;</span>)
+    <span style="color:#66d9ef">if</span> tau <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;default&#34;</span>:
+        tau <span style="color:#f92672">=</span> sum(d)<span style="color:#f92672">/</span>len(d)
+    print(tau)
+    D_half <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>diag((d<span style="color:#f92672">+</span>tau)<span style="color:#f92672">**</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>))
+    L <span style="color:#f92672">=</span> D_half <span style="color:#f92672">@</span> A <span style="color:#a6e22e">@D_half</span>
+    <span style="color:#f92672">from</span> numpy.linalg <span style="color:#f92672">import</span> eigh
+    vals, vecs <span style="color:#f92672">=</span> eigh(L)
+    vecs <span style="color:#f92672">=</span> vecs[:, <span style="color:#ae81ff">0</span>:n]
+    vals <span style="color:#f92672">=</span> vals[<span style="color:#ae81ff">0</span>:n]
+    Xhat <span style="color:#f92672">=</span> nz(vecs, norm <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;l2&#39;</span>)
+    <span style="color:#66d9ef">return</span> Xhat
+    
+    
+    
+d <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>diag(degree_matrix(A))    
+A_clean<span style="color:#f92672">=</span>deepcopy(A)
+purged_names <span style="color:#f92672">=</span> deepcopy(names)
+<span style="color:#66d9ef">for</span> count, i <span style="color:#f92672">in</span> enumerate(d[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]):
+    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        purged_names <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>delete(purged_names, len(names)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>count)
+        A_clean <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>delete(A_clean, len(d)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>count, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+        A_clean <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>delete(A_clean, len(d)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>count, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+    
+X2hat <span style="color:#f92672">=</span> symmetric_RSC(A_clean, <span style="color:#ae81ff">2</span>)
+</code></pre></div><pre><code>4.235294117647059
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x,y,z <span style="color:#f92672">=</span> X2hat[:, <span style="color:#ae81ff">0</span>], X2hat[:, <span style="color:#ae81ff">1</span>],X2hat[:, <span style="color:#ae81ff">2</span>]
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>))
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(purged_names)):
+    plt<span style="color:#f92672">.</span>text(x<span style="color:#f92672">=</span>X2hat[i,<span style="color:#ae81ff">0</span>], y<span style="color:#f92672">=</span>X2hat[i,<span style="color:#ae81ff">1</span>], s<span style="color:#f92672">=</span>purged_names[i], fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+plt<span style="color:#f92672">.</span>scatter(x,y)
+</code></pre></div><pre><code>&lt;matplotlib.collections.PathCollection at 0x7fd3984975b0&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+
+kmeans <span style="color:#f92672">=</span> KMeans(n_clusters <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>fit(X2hat[:,<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>])
+labelzrsc <span style="color:#f92672">=</span> kmeans<span style="color:#f92672">.</span>labels_
+cdict <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#39;red&#39;</span>, <span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#39;blue&#39;</span>, <span style="color:#ae81ff">0</span>: <span style="color:#e6db74">&#39;green&#39;</span>}
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>))
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(purged_names)):
+    plt<span style="color:#f92672">.</span>text(x<span style="color:#f92672">=</span>X2hat[i,<span style="color:#ae81ff">0</span>], y<span style="color:#f92672">=</span>X2hat[i,<span style="color:#ae81ff">1</span>], s<span style="color:#f92672">=</span>purged_names[i], fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+colours <span style="color:#f92672">=</span> deepcopy(purged_names)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(colours)):
+    colours[i]<span style="color:#f92672">=</span>cdict[int(labelzrsc[i])]
+plt<span style="color:#f92672">.</span>scatter(x,y, label <span style="color:#f92672">=</span> labelzrsc, c <span style="color:#f92672">=</span>colours)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;Dim 0&#34;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;Dim 1&#34;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;Regularised Spectral Clustering&#34;</span>)
+</code></pre></div><pre><code>Text(0.5, 1.0, 'Regularised Spectral Clustering')
+</code></pre>
+<!-- raw HTML omitted -->
+<h1 id="slider">Slider</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+<span style="color:#f92672">from</span> matplotlib.widgets <span style="color:#f92672">import</span> Slider
+<span style="color:#f92672">from</span> pylab <span style="color:#f92672">import</span> plot, show, figure, scatter, axes, draw
+
+fig <span style="color:#f92672">=</span> figure(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>)
+fig<span style="color:#f92672">.</span>clear()
+ax <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">111</span>)
+
+x, y <span style="color:#f92672">=</span> X2hat[:,<span style="color:#ae81ff">0</span>], X2hat[:,<span style="color:#ae81ff">1</span>]
+scat <span style="color:#f92672">=</span> scatter(x,y)
+
+axcolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;lightgoldenrodyellow&#39;</span>
+axamp <span style="color:#f92672">=</span> axes([<span style="color:#ae81ff">0.2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.65</span>, <span style="color:#ae81ff">0.03</span>])
+
+scorr <span style="color:#f92672">=</span> Slider(axamp, <span style="color:#e6db74">&#39;tau&#39;</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>, valinit<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update</span>(val):
+    tau<span style="color:#f92672">=</span>val
+    X3hat <span style="color:#f92672">=</span> symmetric_RSC(A_clean, <span style="color:#ae81ff">2</span>, tau<span style="color:#f92672">=</span>tau)
+    x<span style="color:#f92672">=</span>X3hat[:,<span style="color:#ae81ff">0</span>]
+    y <span style="color:#f92672">=</span> X3hat[:,<span style="color:#ae81ff">1</span>]
+    xx <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>vstack ((x, y))
+    scat<span style="color:#f92672">.</span>set_offsets (xx<span style="color:#f92672">.</span>T)
+    draw()
+
+scorr<span style="color:#f92672">.</span>on_changed(update)
+ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#34;Dim 0&#34;</span>)
+ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#34;Dim 1&#34;</span>)
+ax<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;Variable RSC&#34;</span>)
+show(scat)
+</code></pre></div><!-- raw HTML omitted -->
+
+        </p>
+    </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+        <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+        <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://liddicode.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+</footer>
+
+    </body>
+</html>
